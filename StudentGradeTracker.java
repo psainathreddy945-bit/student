@@ -33,6 +33,12 @@ public class StudentGradeTracker {
             int marks = sc.nextInt();
             sc.nextLine();
 
+            if (marks < 0 || marks > 100) {
+                System.out.println("Invalid marks!");
+                i--;
+                continue;
+            }
+
             students.add(new Student(name, marks));
         }
 
@@ -53,12 +59,22 @@ public class StudentGradeTracker {
             }
         }
 
-        double average = (double) total / n;
+        double average = (double) total / students.size();
 
         System.out.println("\n===== STUDENT REPORT =====");
 
         for (Student s : students) {
-            System.out.println("Name: " + s.name + " | Marks: " + s.marks);
+            System.out.println("----------------------");
+            System.out.println("Student Name : " + s.name);
+            System.out.println("Marks        : " + s.marks);
+            if (s.marks >= 90)
+                System.out.println("Grade: A");
+            else if (s.marks >= 75)
+                System.out.println("Grade: B");
+            else if (s.marks >= 50)
+                System.out.println("Grade: C");
+            else
+                System.out.println("Grade: Fail");
         }
 
         System.out.println("\nAverage Marks: " + average);
